@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PS Talent Development Program | Business Case</title>
+  <style>
+    :root {
+      --navy:        #002B5C;
+      --navy-mid:    #0D4E8A;
+      --lb-bg:       #EBF3FC;
+      --lb-border:   #A6C8E6;
+      --cta:         #0070F2;
+      --inp-bg:      #F4F6F9;
+      --inp-border:  #C2CDD8;
+      --text:        #1A2535;
+      --muted:       #4A5F78;
+      --gold:        #F0AB00;
+      --green:       #1A7A50;
+    }
+    /* ── SAP 72 FONT ──────────────────────────────────── */
+    @font-face{font-family:'72';font-style:normal;font-weight:300;
+      src:url('https://ui5.sap.com/resources/sap/ui/core/themes/base/fonts/72-Light.woff2') format('woff2'),
+          url('https://ui5.sap.com/resources/sap/ui/core/themes/base/fonts/72-Light.woff') format('woff');}
+    @font-face{font-family:'72';font-style:normal;font-weight:400;
+      src:url('https://ui5.sap.com/resources/sap/ui/core/themes/base/fonts/72-Regular.woff2') format('woff2'),
+          url('https://ui5.sap.com/resources/sap/ui/core/themes/base/fonts/72-Regular.woff') format('woff');}
+    @font-face{font-family:'72';font-style:normal;font-weight:700;
+      src:url('https://ui5.sap.com/resources/sap/ui/core/themes/base/fonts/72-Bold.woff2') format('woff2'),
+          url('https://ui5.sap.com/resources/sap/ui/core/themes/base/fonts/72-Bold.woff') format('woff');}
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+
+    body{
+      font-family:'72','Segoe UI','Helvetica Neue',Arial,sans-serif;
+      font-size:11px;color:var(--text);
+      background:#E4EBF3;line-height:1.45;
+    }
+
+    /* ── PAGE WRAPPER ─────────────────────────────────── */
+    .page{
+      max-width:840px;margin:20px auto;background:#fff;
+      box-shadow:0 4px 22px rgba(0,28,76,.15);
+      border-radius:4px;overflow:hidden;
+    }
+
+    /* ── HEADER ───────────────────────────────────────── */
+    .pg-header{
+      background:var(--navy);padding:18px 24px 15px;
+      display:flex;justify-content:space-between;align-items:flex-start;
+    }
+    .hdr-left{display:flex;flex-direction:column;gap:3px;}
+    .hdr-prog{font-size:9px;font-weight:700;color:#7ABDE0;
+              letter-spacing:1.8px;text-transform:uppercase;}
+    .hdr-title{font-size:18px;font-weight:700;color:#fff;letter-spacing:.1px;line-height:1.2;}
+    .hdr-doc{font-size:10px;font-weight:600;color:#55AADF;
+             letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+
+    .btn-pdf{
+      background:var(--cta);color:#fff;border:none;border-radius:3px;
+      padding:8px 15px;font-size:11px;font-weight:600;cursor:pointer;
+      white-space:nowrap;letter-spacing:.2px;flex-shrink:0;
+    }
+    .btn-pdf:hover{background:#0058C8;}
+
+    /* ── INSTRUCTION BAR ──────────────────────────────── */
+    .instr-bar{
+      background:#FFFBF0;border-left:3px solid var(--gold);
+      padding:7px 24px;font-size:10px;color:#6A4B00;
+      font-style:italic;font-weight:300;line-height:1.5;
+    }
+
+    /* ── CONTENT ──────────────────────────────────────── */
+    .content{padding:14px 24px 10px;}
+
+    /* ── SECTION ──────────────────────────────────────── */
+    .sec{margin-bottom:10px;border:1px solid var(--lb-border);border-radius:3px;position:relative;}
+
+    .sec-head{
+      background:var(--lb-bg);padding:6px 10px;
+      display:flex;align-items:center;gap:8px;
+      border-bottom:1px solid var(--lb-border);
+      border-radius:3px 3px 0 0;
+    }
+    .sec-num{
+      background:var(--navy);color:#fff;font-size:9px;font-weight:700;
+      width:18px;height:18px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    }
+    .sec-title{
+      color:var(--navy);font-size:10.5px;font-weight:700;
+      text-transform:uppercase;letter-spacing:.7px;
+    }
+
+    .sec-body{padding:9px 10px 8px;}
+
+    /* ── FORM CONTROLS ────────────────────────────────── */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+    .mb7{margin-bottom:7px;}
+    .field{display:flex;flex-direction:column;gap:2px;}
+
+    label{
+      font-size:9.5px;font-weight:700;color:var(--navy-mid);
+      text-transform:uppercase;letter-spacing:.5px;
+    }
+
+    input[type="text"],textarea,select{
+      background:var(--inp-bg);border:1px solid var(--inp-border);
+      border-radius:2px;padding:5px 8px;font-size:11px;
+      font-family:inherit;color:var(--text);width:100%;
+    }
+    option{font-size:11px;font-family:'72','Segoe UI','Helvetica Neue',Arial,sans-serif;}
+    input[type="text"]:focus,textarea:focus,select:focus{
+      outline:none;border-color:var(--cta);background:#fff;
+      box-shadow:0 0 0 2px rgba(0,112,242,.08);
+    }
+    textarea{resize:vertical;}
+    textarea.md{min-height:52px;}
+    textarea.lg{min-height:68px;}
+
+    /* ── OBJECTIVES ───────────────────────────────────── */
+    .obj-row{
+      display:grid;grid-template-columns:185px 1fr;
+      gap:5px;align-items:center;margin-bottom:5px;
+    }
+    .obj-row:last-child{margin-bottom:0;}
+    .obj-lbl{font-size:10px;font-weight:600;color:var(--navy-mid);line-height:1.3;}
+    .opt{font-size:8.5px;font-weight:400;color:var(--muted);display:block;}
+
+    /* ── TABLES ───────────────────────────────────────── */
+    table.tbl{width:100%;border-collapse:collapse;}
+    .tbl th{
+      background:var(--navy);color:#fff;padding:5px 8px;
+      font-size:9.5px;font-weight:700;text-align:left;
+      text-transform:uppercase;letter-spacing:.5px;
+    }
+    .tbl td{border:1px solid #CEDBEA;padding:2px 2px;vertical-align:top;}
+    .tbl tr:nth-child(even) td{background:#F7FAFE;}
+    .tbl td input[type="text"],.tbl td textarea{
+      border:none;background:transparent;
+      padding:4px 6px;font-size:10.5px;width:100%;
+    }
+    .tbl td input[type="text"]:focus,.tbl td textarea:focus{
+      outline:none;background:#EAF3FF;box-shadow:none;
+    }
+    .tbl td textarea{min-height:38px;resize:vertical;}
+
+    .add-btn{
+      float:right;margin-top:5px;background:transparent;
+      color:var(--navy-mid);border:1px solid var(--lb-border);
+      border-radius:2px;padding:3px 10px;font-size:9.5px;cursor:pointer;
+    }
+    .add-btn:hover{background:var(--lb-bg);}
+    .cf{clear:both;}
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    .pg-footer{
+      border-top:1px solid var(--lb-border);background:#F5F8FD;
+      padding:12px 24px 16px;
+      display:flex;align-items:center;justify-content:center;gap:10px;
+    }
+    .btn-save{
+      background:var(--navy);color:#fff;border:none;border-radius:3px;
+      padding:8px 28px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.3px;
+    }
+    .btn-save:hover{background:var(--navy-mid);}
+    .btn-clear{
+      background:transparent;color:var(--navy);
+      border:1.5px solid #A0B8CF;border-radius:3px;
+      padding:7px 18px;font-size:11.5px;font-weight:600;cursor:pointer;
+    }
+    .btn-clear:hover{background:var(--lb-bg);}
+    .toast{display:none;font-size:11px;color:var(--green);font-weight:600;}
+
+    /* ── MULTI-SELECT DROPDOWN ────────────────────────── */
+    .multi-sel{position:relative;width:100%;}
+    .ms-trigger{
+      background:var(--inp-bg);border:1px solid var(--inp-border);
+      border-radius:2px;padding:5px 8px;cursor:pointer;
+      display:flex;justify-content:space-between;align-items:center;
+      font-size:11px;color:var(--text);user-select:none;
+    }
+    .ms-trigger:hover{border-color:var(--cta);}
+    .ms-trigger.open{border-color:var(--cta);background:#fff;
+      box-shadow:0 0 0 2px rgba(0,112,242,.08);}
+    .ms-arrow{font-size:9px;color:var(--muted);transition:transform .15s;margin-left:4px;}
+    .ms-trigger.open .ms-arrow{transform:rotate(180deg);}
+    .ms-display{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .ms-placeholder{color:#999;}
+    .ms-dropdown{
+      display:none;position:fixed;
+      background:#fff;border:1px solid var(--inp-border);
+      border-radius:0 0 3px 3px;
+      z-index:9999;box-shadow:0 6px 16px rgba(0,20,50,.15);
+      min-width:200px;
+    }
+    .ms-dropdown.open{display:block;}
+    .ms-option{
+      display:flex;align-items:center;gap:8px;
+      padding:7px 10px;cursor:pointer;
+      font-size:11px;color:var(--text);
+      font-weight:400;text-transform:none;letter-spacing:0;
+    }
+    .ms-option:hover{background:var(--lb-bg);}
+    .ms-option input[type="checkbox"]{
+      width:13px;height:13px;accent-color:var(--navy);
+      cursor:pointer;flex-shrink:0;margin:0;
+    }
+
+    /* ── SUBMIT BUTTON ────────────────────────────────── */
+    .btn-submit{
+      background:#0E7C45;color:#fff;border:none;border-radius:3px;
+      padding:8px 22px;font-size:12px;font-weight:700;cursor:pointer;
+      letter-spacing:.3px;font-family:inherit;
+    }
+    .btn-submit:hover{background:#0A6035;}
+
+    /* ── MODAL ────────────────────────────────────────── */
+    .modal-overlay{
+      position:fixed;inset:0;background:rgba(0,20,50,.55);
+      display:flex;align-items:center;justify-content:center;z-index:1000;
+    }
+    .modal-box{
+      background:#fff;border-radius:5px;padding:24px 28px;
+      max-width:420px;width:90%;
+      box-shadow:0 8px 32px rgba(0,20,50,.28);
+    }
+    .modal-title{
+      font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px;
+    }
+    .modal-body p{font-size:11px;color:var(--text);margin-bottom:7px;line-height:1.55;}
+    .modal-note{
+      background:#F0F7FF;border-left:3px solid var(--cta);
+      padding:7px 10px;border-radius:2px;margin-top:6px;font-size:10.5px;
+    }
+    .modal-actions{display:flex;gap:8px;margin-top:16px;justify-content:flex-end;}
+    .modal-btn-p{
+      background:var(--navy);color:#fff;border:none;border-radius:3px;
+      padding:7px 18px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;
+    }
+    .modal-btn-p:hover{background:var(--navy-mid);}
+    .modal-btn-s{
+      background:transparent;color:var(--navy);border:1.5px solid #A0B8CF;
+      border-radius:3px;padding:6px 14px;font-size:11px;font-weight:600;
+      cursor:pointer;font-family:inherit;
+    }
+    .modal-btn-s:hover{background:var(--lb-bg);}
+
+    /* ── PRINT / PDF ──────────────────────────────────── */
+    @media print{
+      body{background:#fff;}
+      .page{box-shadow:none;margin:0;max-width:100%;border-radius:0;}
+      .btn-pdf,.pg-footer,.add-btn{display:none!important;}
+      .pg-header,.sec-head,.sec-num,.tbl th,.instr-bar{
+        -webkit-print-color-adjust:exact;print-color-adjust:exact;
+      }
+      input[type="text"],textarea,select{background:transparent!important;border-color:#bbb;}
+      .tbl td input,.tbl td textarea{background:transparent!important;}
+      .sec{break-inside:avoid;page-break-inside:avoid;}
+      .content{padding:10px 20px 8px;}
+      @page{margin:11mm 14mm;size:A4 portrait;}
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ HEADER ══════════════════════════════════════════ -->
+  <div class="pg-header">
+    <div class="hdr-left">
+      <div class="hdr-prog">PS Talent Development Program</div>
+      <div class="hdr-title">Business Improvement Challenge</div>
+      <div class="hdr-doc">Business Case</div>
+    </div>
+    <button class="btn-pdf" title="Opens print dialog — choose 'Save as PDF'" onclick="window.print()">⬇&nbsp; Download as PDF</button>
+  </div>
+
+  <!-- ══ INSTRUCTION BAR ════════════════════════════════ -->
+  <div class="instr-bar">
+    Keep responses concise, factual, and focused on the proposed business improvement.
+    If not applicable, enter N/A. This is an initial proposal: describe expected value, not achieved results.
+  </div>
+
+  <!-- ══ CONTENT ════════════════════════════════════════ -->
+  <div class="content">
+
+    <!-- ─ SECTION 1 — PROJECT OVERVIEW ───────────────── -->
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-num">1</div>
+        <div class="sec-title">Project Overview</div>
+      </div>
+      <div class="sec-body">
+        <div class="grid-2 mb7">
+          <div class="field">
+            <label>Project Title</label>
+            <input type="text" id="s1_title" placeholder="">
+          </div>
+          <div class="field">
+            <label>Team</label>
+            <select id="s1_team">
+              <option value="" disabled selected>[Select your team]</option>
+              <option>Process Execution</option>
+              <option>Partnership Support</option>
+              <option>Orchestration Services</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label>Participants</label>
+            <!-- Plain text input shown for non-PS teams -->
+            <input type="text" id="s1_parts" placeholder="" style="display:block;">
+            <!-- Multi-select dropdown shown for Partnership Support -->
+            <div class="multi-sel" id="ps-multi-sel" style="display:none;">
+              <div class="ms-trigger" id="ms-trigger" onclick="toggleMultiSel(event)">
+                <span class="ms-display ms-placeholder" id="ms-display">[Select participants]</span>
+                <span class="ms-arrow">▾</span>
+              </div>
+              <div class="ms-dropdown" id="ms-dropdown">
+                <label class="ms-option">
+                  <input type="checkbox" class="ps-part-chk" value="Isabela Pereira"> Isabela Pereira
+                </label>
+                <label class="ms-option">
+                  <input type="checkbox" class="ps-part-chk" value="Julia Nunes"> Julia Nunes
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Direct Manager</label>
+            <input type="text" id="s1_mgr" placeholder="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ SECTION 2 — PROJECT SUMMARY ────────────────── -->
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-num">2</div>
+        <div class="sec-title">Project Summary</div>
+      </div>
+      <div class="sec-body">
+        <textarea id="s2_summary" class="md"
+          placeholder="[Summarize the challenge or opportunity, proposed solution, anticipated value, and program fit in 3–5 sentences]"></textarea>
+      </div>
+    </div>
+
+    <!-- ─ SECTION 3 — BUSINESS PROBLEM / OPPORTUNITY ── -->
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-num">3</div>
+        <div class="sec-title">Business Problem / Opportunity</div>
+      </div>
+      <div class="sec-body">
+        <textarea id="s3_problem" class="lg"
+          placeholder="[Describe the scenario, where it occurs, who is affected, how it is handled today, and why this is a problem or opportunity for improvement]"></textarea>
+      </div>
+    </div>
+
+    <!-- ─ SECTION 4 — PROPOSED SOLUTION ─────────────── -->
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-num">4</div>
+        <div class="sec-title">Proposed Solution</div>
+      </div>
+      <div class="sec-body">
+        <textarea id="s5_solution" class="lg"
+          placeholder="[Describe the proposed solution, making clear how it addresses the business problem described in Section 3]"></textarea>
+      </div>
+    </div>
+
+    <!-- ─ SECTION 6 — TARGET OUTCOMES ───────────────── -->
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-num">5</div>
+        <div class="sec-title">Expected Benefits &amp; Success Measures</div>
+      </div>
+      <div class="sec-body">
+        <div class="sec-instr"
+          style="font-size:9.5px;color:#3C6A96;font-style:italic;margin-bottom:7px;padding:4px 8px;background:#F5FAFF;border-left:2px solid #BDD5EE;">
+          List the top 2–3 expected gains and how each will be measured (indicator / evidence). Quantify if possible.
+        </div>
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th style="width:52%">Expected Benefit</th>
+              <th>Measurement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" id="s6_g1" placeholder="[Describe expected gain 1]"></td>
+              <td><input type="text" id="s6_m1" placeholder="[How it will be measured or evidenced]"></td>
+            </tr>
+            <tr>
+              <td><input type="text" id="s6_g2" placeholder="[Describe expected gain 2]"></td>
+              <td><input type="text" id="s6_m2" placeholder="[How it will be measured or evidenced]"></td>
+            </tr>
+            <tr>
+              <td><input type="text" id="s6_g3" placeholder="[Describe expected gain 3 — optional]"></td>
+              <td><input type="text" id="s6_m3" placeholder="[How it will be measured or evidenced]"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─ SECTION 7 — CAPABILITY ALIGNMENT ──────────── -->
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-num">6</div>
+        <div class="sec-title">Capability Alignment</div>
+      </div>
+      <div class="sec-body">
+        <textarea id="s7_text" class="lg"
+          placeholder="[Describe how the project will demonstrate practical application of the three selected capabilities for your group]"></textarea>
+      </div>
+    </div>
+
+    <!-- ─ SECTION 8 — TIMELINE ───────────────────────── -->
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-num">7</div>
+        <div class="sec-title">Timeline</div>
+      </div>
+      <div class="sec-body">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th style="width:50%">Task</th>
+              <th style="width:25%">Responsible</th>
+              <th>Indicative Timeframe</th>
+            </tr>
+          </thead>
+          <tbody id="tl-body">
+            <tr>
+              <td><input type="text" placeholder="[Enter task description]"></td>
+              <td><input type="text" placeholder="[Responsible]"></td>
+              <td><input type="text" placeholder="[e.g. Week 1–2]"></td>
+            </tr>
+            <tr>
+              <td><input type="text" placeholder="[Enter task description]"></td>
+              <td><input type="text" placeholder="[Responsible]"></td>
+              <td><input type="text" placeholder="[e.g. Week 3–4]"></td>
+            </tr>
+            <tr>
+              <td><input type="text" placeholder="[Enter task description]"></td>
+              <td><input type="text" placeholder="[Responsible]"></td>
+              <td><input type="text" placeholder="[e.g. Week 5–6]"></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="add-btn" onclick="addRow()">+ Add Row</button>
+        <div class="cf"></div>
+      </div>
+    </div>
+
+    <!-- ─ SECTION 9 — SUSTAINABILITY ─────────────────── -->
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-num">8</div>
+        <div class="sec-title">Sustainability</div>
+      </div>
+      <div class="sec-body">
+        <textarea id="s9_sust" class="md"
+          placeholder="[Describe how the solution will be maintained or adopted after the challenge, who will own it, and any potential for future expansion]"></textarea>
+      </div>
+    </div>
+
+    <!-- ─ SECTION 10 — COMMENTS ──────────────────────── -->
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-num">9</div>
+        <div class="sec-title">Comments</div>
+      </div>
+      <div class="sec-body">
+        <textarea id="s10_comments" class="md"
+          placeholder="[Use this optional field if you have additional comments]"></textarea>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- ══ FOOTER ═════════════════════════════════════════ -->
+  <div class="pg-footer">
+    <button class="btn-save" onclick="saveData()">Save Progress</button>
+    <button class="btn-clear" onclick="clearData()">Clear All</button>
+    <button class="btn-submit" onclick="submitCase()">Submit</button>
+    <span class="toast" id="toast">✓&nbsp; Progress saved</span>
+  </div>
+
+  <!-- ══ SUBMIT MODAL ════════════════════════════════════ -->
+  <div id="submit-modal" class="modal-overlay" style="display:none;" onclick="closeSubmitModal(event)">
+    <div class="modal-box">
+      <div class="modal-title">Submit Business Case</div>
+      <div class="modal-body">
+        <p>Your email client will open pre-composed with the manager and participants.</p>
+        <p class="modal-note"><strong>Before sending:</strong> click <em>Download as PDF</em> at the top of the page and attach the file to the email.</p>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn-p" onclick="openEmailClient()">Open Email Client</button>
+        <button class="modal-btn-s" onclick="closeSubmitModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<!-- ══ SCRIPT ════════════════════════════════════════════ -->
+<script>
+  const KEY = 'ps_bizcase_v1';
+
+  const FIELDS = [
+    's1_title','s1_team','s1_parts','s1_mgr',
+    's2_summary','s3_problem',
+    's5_solution',
+    's6_g1','s6_m1','s6_g2','s6_m2','s6_g3','s6_m3',
+    's7_text',
+    's9_sust','s10_comments'
+  ];
+
+  /* ── Team → manager auto-fill ── */
+  const TEAM_MANAGER = {
+    'Partnership Support': 'Isabela Pereira'
+    // Add other teams here as needed
+  };
+
+  /* ── Teams that use the multi-select dropdown ── */
+  const TEAM_PARTS_OPTIONS = {
+    'Partnership Support': ['Isabela Pereira', 'Julia Nunes']
+    // Add other teams here as needed
+  };
+
+  /* ── Name → SAP email map ── */
+  const EMAIL_MAP = {
+    'Isabela Pereira': 'isabela.pereira@sap.com',
+    'Julia Nunes':     'julia.nunes@sap.com'   // update if different
+  };
+
+  /* ── Multi-select toggle ── */
+  function toggleMultiSel(e) {
+    e.stopPropagation();
+    const trigger  = document.getElementById('ms-trigger');
+    const dropdown = document.getElementById('ms-dropdown');
+    const isOpen   = dropdown.classList.contains('open');
+
+    if (!isOpen) {
+      // Position the fixed dropdown directly under the trigger
+      const rect = trigger.getBoundingClientRect();
+      dropdown.style.top   = rect.bottom + 'px';
+      dropdown.style.left  = rect.left   + 'px';
+      dropdown.style.width = rect.width  + 'px';
+    }
+
+    trigger.classList.toggle('open', !isOpen);
+    dropdown.classList.toggle('open', !isOpen);
+  }
+
+  /* Reposition on scroll/resize so it stays aligned */
+  function repositionDropdown() {
+    const dropdown = document.getElementById('ms-dropdown');
+    if (!dropdown || !dropdown.classList.contains('open')) return;
+    const trigger = document.getElementById('ms-trigger');
+    const rect = trigger.getBoundingClientRect();
+    dropdown.style.top   = rect.bottom + 'px';
+    dropdown.style.left  = rect.left   + 'px';
+    dropdown.style.width = rect.width  + 'px';
+  }
+  window.addEventListener('scroll', repositionDropdown, true);
+  window.addEventListener('resize', repositionDropdown);
+
+  /* Close dropdown when clicking outside */
+  document.addEventListener('click', function (e) {
+    const sel = document.getElementById('ps-multi-sel');
+    if (sel && !sel.contains(e.target)) {
+      document.getElementById('ms-trigger')?.classList.remove('open');
+      document.getElementById('ms-dropdown')?.classList.remove('open');
+    }
+  });
+
+  /* Sync checkboxes → hidden text input + display label */
+  function syncCheckboxes() {
+    const selected = [...document.querySelectorAll('.ps-part-chk:checked')].map(c => c.value);
+    document.getElementById('s1_parts').value = selected.join(', ');
+    const disp = document.getElementById('ms-display');
+    if (disp) {
+      disp.textContent    = selected.length ? selected.join(', ') : '[Select participants]';
+      disp.className      = 'ms-display' + (selected.length ? '' : ' ms-placeholder');
+    }
+  }
+
+  /* Restore checkboxes from a comma-separated string */
+  function restoreCheckboxes(csv) {
+    const names = (csv || '').split(',').map(s => s.trim());
+    document.querySelectorAll('.ps-part-chk').forEach(cb => {
+      cb.checked = names.includes(cb.value);
+    });
+    syncCheckboxes();
+  }
+
+  /* Switch UI between plain input and multi-select */
+  function applyTeamUI(team) {
+    const partsInput  = document.getElementById('s1_parts');
+    const multiSel    = document.getElementById('ps-multi-sel');
+    const useMulti    = !!TEAM_PARTS_OPTIONS[team];
+    partsInput.style.display = useMulti ? 'none'  : 'block';
+    multiSel.style.display   = useMulti ? 'block' : 'none';
+  }
+
+  /* Team dropdown change handler */
+  document.getElementById('s1_team').addEventListener('change', function () {
+    const team = this.value;
+
+    // Auto-fill manager
+    const mgr = document.getElementById('s1_mgr');
+    mgr.value = TEAM_MANAGER[team] || '';
+
+    // Switch participants UI
+    applyTeamUI(team);
+
+    // Reset participants when switching team
+    document.querySelectorAll('.ps-part-chk').forEach(cb => cb.checked = false);
+    document.getElementById('s1_parts').value = '';
+    syncCheckboxes();
+
+    saveData();
+  });
+
+  /* Checkbox change handler */
+  document.querySelectorAll('.ps-part-chk').forEach(cb => {
+    cb.addEventListener('change', () => { syncCheckboxes(); saveData(); });
+  });
+
+  /* Helpers */
+  function getParticipantsList() {
+    return document.getElementById('s1_parts').value
+      .split(',').map(s => s.trim()).filter(Boolean);
+  }
+
+  function esc(s) {
+    return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;')
+                  .replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  /* ── Timeline serialisation ── */
+  function getTimeline() {
+    const rows = [];
+    document.querySelectorAll('#tl-body tr').forEach(tr => {
+      const inp = tr.querySelectorAll('input');
+      rows.push([inp[0]?.value||'', inp[1]?.value||'', inp[2]?.value||'']);
+    });
+    return rows;
+  }
+
+  function setTimeline(rows) {
+    const body = document.getElementById('tl-body');
+    body.innerHTML = '';
+    rows.forEach(([t,r,f]) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML =
+        `<td><input type="text" placeholder="[Enter task description]" value="${esc(t)}"></td>` +
+        `<td><input type="text" placeholder="[Responsible]"            value="${esc(r)}"></td>` +
+        `<td><input type="text" placeholder="[e.g. Week —]"            value="${esc(f)}"></td>`;
+      body.appendChild(tr);
+    });
+  }
+
+  /* ── Save ── */
+  function saveData() {
+    const data = { f:{}, tl: getTimeline() };
+    FIELDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) data.f[id] = el.value;
+    });
+    try {
+      localStorage.setItem(KEY, JSON.stringify(data));
+      const t = document.getElementById('toast');
+      t.style.display = 'inline';
+      setTimeout(() => t.style.display = 'none', 2500);
+    } catch(e) {
+      alert('Could not save — local storage may be disabled in this browser.');
+    }
+  }
+
+  /* ── Load ── */
+  function loadData() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      if (data.f) FIELDS.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && data.f[id] !== undefined) el.value = data.f[id];
+      });
+      if (data.tl && data.tl.length) setTimeline(data.tl);
+
+      // Restore team-specific UI after values are loaded
+      const team = document.getElementById('s1_team').value;
+      applyTeamUI(team);
+      if (TEAM_PARTS_OPTIONS[team]) restoreCheckboxes(data.f?.s1_parts || '');
+    } catch(e) {}
+  }
+
+  /* ── Clear ── */
+  function clearData() {
+    if (!confirm('Clear all fields? Saved progress will also be deleted.')) return;
+    FIELDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.tagName === 'SELECT' ? (el.selectedIndex = 0) : (el.value = '');
+    });
+    document.querySelectorAll('.ps-part-chk').forEach(cb => cb.checked = false);
+    syncCheckboxes();
+    applyTeamUI('');
+    setTimeline([['','',''],['','',''],['','','']]);
+    localStorage.removeItem(KEY);
+  }
+
+  /* ── Add timeline row ── */
+  function addRow() {
+    const body = document.getElementById('tl-body');
+    const tr   = document.createElement('tr');
+    tr.innerHTML =
+      '<td><input type="text" placeholder="[Enter task description]"></td>' +
+      '<td><input type="text" placeholder="[Responsible]"></td>' +
+      '<td><input type="text" placeholder="[e.g. Week —]"></td>';
+    body.appendChild(tr);
+  }
+
+  /* ── Submit ── */
+  let _pendingMailto = '';
+
+  function submitCase() {
+    const title   = document.getElementById('s1_title').value.trim();
+    const manager = document.getElementById('s1_mgr').value.trim();
+    const summary = document.getElementById('s2_summary').value.trim();
+    const parts   = getParticipantsList();
+
+    if (!title)        { alert('Please enter a Project Title before submitting.');           return; }
+    if (!manager)      { alert('Please enter the Direct Manager before submitting.');        return; }
+    if (!parts.length) { alert('Please select at least one participant before submitting.'); return; }
+
+    const toEmail  = EMAIL_MAP[manager] || '';
+    const ccEmails = parts.map(p => EMAIL_MAP[p] || '').filter(Boolean).join(',');
+    const firstName = manager.split(' ')[0];
+    const signature = parts.join('\n');
+
+    // Truncate summary to avoid mailto length issues
+    const summaryLine = summary.length > 300
+      ? summary.slice(0, 297) + '...'
+      : (summary || '(see attached PDF)');
+
+    const bodyText =
+      `Dear ${firstName},\n\n` +
+      `Please find attached the business case proposed by our group for the PS Talent Development Program.\n\n` +
+      `Project Title: ${title}\n` +
+      `Project Summary: ${summaryLine}\n` +
+      `Participants: ${parts.join(', ')}\n\n` +
+      `We look forward to your feedback and remain available should you need any clarification.\n\n` +
+      `Best regards,\n\n` +
+      `${signature}`;
+
+    let mailto = `mailto:${toEmail}`;
+    const params = [];
+    if (ccEmails)       params.push(`cc=${ccEmails}`);
+    params.push(`subject=${encodeURIComponent('Business Case: ' + title)}`);
+    params.push(`body=${encodeURIComponent(bodyText)}`);
+    if (params.length)  mailto += '?' + params.join('&');
+
+    _pendingMailto = mailto;
+    document.getElementById('submit-modal').style.display = 'flex';
+  }
+
+  function openEmailClient() {
+    closeSubmitModal();
+    const a = document.createElement('a');
+    a.href = _pendingMailto;
+    a.click();
+  }
+
+  function closeSubmitModal(e) {
+    if (e && e.target !== document.getElementById('submit-modal')) return;
+    document.getElementById('submit-modal').style.display = 'none';
+  }
+
+  /* ── Auto-save on input (debounced) ── */
+  let _t;
+  document.addEventListener('input', () => { clearTimeout(_t); _t = setTimeout(saveData, 1800); });
+
+  /* ── Init ── */
+  window.addEventListener('DOMContentLoaded', loadData);
+</script>
+</body>
+</html>
